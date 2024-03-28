@@ -67,7 +67,7 @@ resource "aws_instance" "COMPRAS_dev_instance" {
  }
 # Agregando el par de claves VOCKEY
  key_name = "vockey"
- key_name = "conexion linux.pem"
+
 }
 
 # Mostrando IP pública de la instancia EC2 después de su despliegue.
