@@ -20,11 +20,11 @@ jobs:
         script: |
           sudo yum update -y
           sudo yum install -y nodejs npm git
-          sudo rm -rf /opt/nombreDeSuDirectorio
-          sudo mkdir -p /opt/nombreDeSuDirectorio
-          cd /opt/nombreDeSuDirectorio
+          sudo rm -rf /opt/proveedores
+          sudo mkdir -p /opt/proveedores
+          cd /opt/proveedores
           sudo git clone https://${{ secrets.GH_TOKEN_PROVEEDORES }}@github.com/alkemyTech/UMSA-DevOps-T4 .
           sudo npm install express 
           sudo npm install -g pm2
-          sudo pm2 start index.js
+          sudo pm2 start app.js
           sudo pm2 status
