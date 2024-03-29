@@ -18,8 +18,8 @@ jobs:
         script: |
           sudo apt-get update
           sudo apt-get install -y nodejs npm git
-          sudo rm -rf /opt/Ventas
-          sudo mkdir -p /opt/Ventas
+          sudo rm -rf /opt/Compras
+          sudo mkdir -p /opt/Compras
           cd /opt/Compras
           sudo git clone https://${{ secrets.GH_TOKEN_COMPRAS }}@github.com/alkemyTech/UMSA-DevOps-T4 .
           sudo npm install express 
