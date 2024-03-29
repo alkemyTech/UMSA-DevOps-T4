@@ -16,13 +16,13 @@ jobs:
         username: ${{ secrets.USER_COMPRAS }}
         key: ${{ secrets.VOCKEY_FILE_COMPRAS }}
         script: |
+          sudo yum update -y
           sudo yum install -y nodejs npm git
-          sudo mkdir -p /opt/Compras
-          sudo rm -rf /opt/Compras/* || true
+          sudo rm -rf /opt/Ventas
+          sudo mkdir -p /opt/Ventas
           cd /opt/Compras
           sudo git clone https://${{ secrets.GH_TOKEN_COMPRAS }}@github.com/alkemyTech/UMSA-DevOps-T4.git
-          sudo npm install express
+          sudo npm install express 
           sudo npm install -g pm2
           sudo pm2 start app.js
-          sudo pm2 save
-          sudo pm2 startup
+          sudo pm2 status
