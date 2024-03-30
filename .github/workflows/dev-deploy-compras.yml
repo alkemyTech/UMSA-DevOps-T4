@@ -1,28 +1,28 @@
 name: Deploy to EC2 (DEV)
 
 on:
- push:
+  push:
     branches:
       - compras     
 
 jobs:
- deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.EC2_PUBLIC_IP_COMPRAS }}
-        username: ${{ secrets.USER_COMPRAS }}
-        key: ${{ secrets.VOCKEY_FILE_COMPRAS }}
-        script: |
-          sudo apt-get update
-          sudo apt-get install -y nodejs npm git
-          sudo rm -rf /opt/Compras
-          sudo mkdir -p /opt/Compras
-          cd /opt/Compras
-          sudo git clone https://${{ secrets.GH_TOKEN_COMPRAS }}@github.com/alkemyTech/UMSA-DevOps-T4 .
-          sudo npm install express 
-          sudo npm install -g pm2
-          sudo pm2 start app.js
-          sudo pm2 status
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_PUBLIC_IP_COMPRAS }}
+          username: ${{ secrets.USER_COMPRAS }}
+          key: ${{ secrets.VOCKEY_FILE_COMPRAS }}
+          script: |
+            sudo yum update -y
+            sudo yum install -y nodejs npm git
+            sudo rm -rf /opt/Compras
+            sudo mkdir -p /opt/Compras
+            cd /opt/Compras
+            sudo git clone https://${{ secrets.GH_TOKEN_COMPRAS }}@github.com/alkemyTech/UMSA-DevOps-T4 .
+            sudo npm install express 
+            sudo npm install -g pm2
+            sudo pm2 start app.js
+            sudo pm2 status
