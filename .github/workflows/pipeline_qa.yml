@@ -1,7 +1,9 @@
 name: remote_ssh_command_ventas_qa
 
 on:
-  workflow_dispatch:
+   push:
+    branches:
+      - ventas
 
 jobs:
   build:
