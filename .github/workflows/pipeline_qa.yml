@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build and Publish
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
@@ -18,21 +18,28 @@ jobs:
             sudo su  # Cambiar al usuario root
             sudo yum update -y
             sudo yum install -y nodejs npm git
+            sudo yum install -y docker  # Instalar Docker
+            sudo systemctl start docker  # Iniciar Docker
+            sudo systemctl enable docker  # Habilitar Docker para que se inicie en el arranque
+            sudo usermod -aG docker $USER  # Añadir el usuario actual al grupo docker
             sudo rm -rf /opt/Ventas_qa
             sudo mkdir -p /opt/Ventas_qa
             sudo cd /opt/Ventas_qa
             sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
-            sudo echo 'FROM node:latest' > Dockerfile
-            sudo echo 'WORKDIR /usr/src/app' >> Dockerfile
-            sudo echo 'COPY . .' >> Dockerfile
-            sudo echo 'RUN npm install' >> Dockerfile
-            sudo echo 'EXPOSE 3000' >> Dockerfile
-            sudo echo 'CMD ["node", "app.js"]' >> Dockerfile
-      
+            sudo rm -f /opt/Ventas_qa/Dockerfile  # Eliminar el Dockerfile existente si existe
+            sudo docker rmi -f mi-aplicacion-node || true  # Eliminar la imagen Docker anterior si existe (y suprimir errores si no existe)
+
+            # Crear el nuevo Dockerfile
+            echo 'FROM node:latest' > Dockerfile
+            echo 'WORKDIR /usr/src/app' >> Dockerfile
+            echo 'COPY . .' >> Dockerfile
+            echo 'RUN npm install' >> Dockerfile
+            echo 'EXPOSE 3000' >> Dockerfile
+            echo 'CMD ["node", "app.js"]' >> Dockerfile
+
       - name: Build Docker image
         run: |
           cd /opt/Ventas_qa
           docker build -t mi-aplicacion-node .
-
             
     
