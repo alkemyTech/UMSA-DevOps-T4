@@ -30,6 +30,6 @@ jobs:
           dockerfile: Dockerfile
           context: .  # Specify the context for the Dockerfile generation, assuming it's the root of the project
 
-      - name: Save Dockerfile to /opt/Ventas_qa
+      - name: Print Dockerfile content
         run: |
-          sudo cp Dockerfile /opt/Ventas_qa/
+          cat Dockerfile
