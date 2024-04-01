@@ -30,5 +30,6 @@ jobs:
           dockerfile: Dockerfile
           context: .  # Specify the context for the Dockerfile generation, assuming it's the root of the project
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Save Dockerfile to /opt/Ventas_qa
+        run: |
+          sudo cp Dockerfile /opt/Ventas_qa/
