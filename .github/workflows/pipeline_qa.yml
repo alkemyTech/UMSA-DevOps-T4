@@ -1,9 +1,7 @@
 name: remote_ssh_command_ventas_qa
 
 on:
-   push:
-    branches:
-      - ventas
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,4 +28,11 @@ jobs:
             sudo echo 'RUN npm install' >> Dockerfile
             sudo echo 'EXPOSE 3000' >> Dockerfile
             sudo echo 'CMD ["node", "app.js"]' >> Dockerfile
+      
+      - name: Build Docker image
+        run: |
+          cd /opt/Ventas_qa
+          docker build -t mi-aplicacion-node .
+
+            
     
