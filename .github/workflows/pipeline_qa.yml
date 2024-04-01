@@ -20,7 +20,6 @@ jobs:
             sudo rm -rf /opt/Ventas_qa
             sudo mkdir -p /opt/Ventas_qa
             cd /opt/Ventas_qa
-            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
             
       
     
