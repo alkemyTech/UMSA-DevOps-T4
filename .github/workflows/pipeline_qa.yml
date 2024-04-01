@@ -1,0 +1,31 @@
+name: remote_ssh_command_ventas_qa
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.QA_PRUEBA_HOST }}
+          username: ${{ secrets.USER_VENTAS }}
+          key: ${{ secrets.QA_PRUEBA_SSH }}
+          script: |
+            sudo yum update -y
+            sudo yum install -y nodejs npm git
+            sudo rm -rf /opt/Ventas_qa
+            sudo mkdir -p /opt/Ventas_qa
+            cd /opt/Ventas_qa
+            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
+            echo 'FROM node:latest' > Dockerfile
+            echo 'WORKDIR /usr/src/app' >> Dockerfile
+            echo 'COPY . .' >> Dockerfile
+            echo 'RUN npm install' >> Dockerfile
+            echo 'EXPOSE 3000' >> Dockerfile
+            echo 'CMD ["node", "app.js"]' >> Dockerfile
+      
+    
