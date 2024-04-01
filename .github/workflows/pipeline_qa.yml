@@ -28,20 +28,5 @@ jobs:
             sudo mkdir -p /opt/Ventas_qa
             sudo cd /opt/Ventas_qa
             sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
-            sudo rm -f /opt/Ventas_qa/Dockerfile  # Eliminar el Dockerfile existente si existe
-            sudo docker rmi -f mi-aplicacion-node || true  # Eliminar la imagen Docker anterior si existe (y suprimir errores si no existe)
-
-            # Crear el nuevo Dockerfile
-            echo 'FROM node:latest' > Dockerfile
-            echo 'WORKDIR /usr/src/app' >> Dockerfile
-            echo 'COPY . .' >> Dockerfile
-            echo 'RUN npm install' >> Dockerfile
-            echo 'EXPOSE 3000' >> Dockerfile
-            echo 'CMD ["node", "app.js"]' >> Dockerfile
-
-      - name: Build Docker image
-        run: |
-          cd /opt/Ventas_qa
-          docker build -t mi-aplicacion-node .
             
     
