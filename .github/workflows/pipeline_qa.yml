@@ -1,7 +1,7 @@
 name: remote_ssh_command_ventas_qa
 
 on:
-   push:
+  push:
     branches:
       - ventas
 
@@ -23,4 +23,12 @@ jobs:
              sudo mkdir -p /opt/Ventas_qa
              cd /opt/Ventas_qa
              sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
-    
+
+      - name: Generate Dockerfile
+        uses: docker/setup-buildx-action@v1
+        with:
+          dockerfile: Dockerfile
+          context: .  # Specify the context for the Dockerfile generation, assuming it's the root of the project
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
