@@ -18,17 +18,16 @@ jobs:
           key: ${{ secrets.QA_PRUEBA_SSH }}
           script: |
             sudo su  # Cambiar al usuario root
-            yum update -y
-            yum install -y nodejs npm git
-            rm -rf /opt/Ventas_qa
-            mkdir -p /opt/Ventas_qa
-            cd /opt/Ventas_qa
-            git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
-            echo 'FROM node:latest' > Dockerfile
-            echo 'WORKDIR /usr/src/app' >> Dockerfile
-            echo 'COPY . .' >> Dockerfile
-            echo 'RUN npm install' >> Dockerfile
-            echo 'EXPOSE 3000' >> Dockerfile
-            echo 'CMD ["node", "app.js"]' >> Dockerfile
-      
+            sudo yum update -y
+            sudo yum install -y nodejs npm git
+            sudo rm -rf /opt/Ventas_qa
+            sudo mkdir -p /opt/Ventas_qa
+            sudo cd /opt/Ventas_qa
+            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
+            sudo echo 'FROM node:latest' > Dockerfile
+            sudo echo 'WORKDIR /usr/src/app' >> Dockerfile
+            sudo echo 'COPY . .' >> Dockerfile
+            sudo echo 'RUN npm install' >> Dockerfile
+            sudo echo 'EXPOSE 3000' >> Dockerfile
+            sudo echo 'CMD ["node", "app.js"]' >> Dockerfile
     
