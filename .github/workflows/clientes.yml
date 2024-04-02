@@ -1,0 +1,30 @@
+name: CLIENTES-EC2
+
+on:
+  push:
+    branches:
+      - clientes
+  
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST_CLIENTES }}
+        username: ${{ secrets.USER_PROVEEDORES }}
+        key: ${{ secrets.SSH_PRIVATE_KEY_CLIENTES }}
+        script: |
+          sudo yum update -y
+          sudo yum install -y nodejs npm git
+          sudo rm -rf /opt/clientes
+          sudo mkdir -p /opt/clientes
+          cd /opt/clientes
+          sudo git clone https://${{ secrets.GH_TOKEN_CLIENTES }}@github.com/alkemyTech/UMSA-DevOps-T4 .
+          sudo npm install express 
+          sudo npm install -g pm2
+          sudo pm2 start app.js
+          sudo pm2 status
