@@ -4,22 +4,21 @@ provider "aws" {
 }
 
 # AMI de Ubuntu 20.04 LTS de Canonical
-# data "aws_ami" "ubuntu" {
-# most_recent = true
-#
-# filter {
-#     name   = "name"
-#     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-# }
-#
-# filter {
-#     name   = "virtualization-type"
-#     values = ["hvm"]
-# }
-#
-# owners = ["099720109477"] # ID 
-# }
+data "aws_ami" "ubuntu" {
+ most_recent = true
 
+ filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+ }
+
+ filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+ }
+
+ owners = ["099720109477"] # ID 
+}
 
 
 # Grupo de seguridad para la instancia EC2
@@ -58,7 +57,7 @@ resource "aws_security_group" "instance_security_group" {
 }
 # Definiendo la instancia EC2.
 resource "aws_instance" "COMPRAS_dev_instance" {
-  ami           = "ami-0a3c3a20c09d6f377" # AMI de Amazon Linux
+ ami           = data.aws_ami.ubuntu.id
  instance_type = "t2.micro"
  # Asociando la instancia con el grupo de seguridad creado.
  vpc_security_group_ids = [aws_security_group.instance_security_group.id]
