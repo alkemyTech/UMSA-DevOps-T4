@@ -1,7 +1,9 @@
 name: SonarCloud Scan
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - ventas
 
 jobs:
   sonarcloud:
