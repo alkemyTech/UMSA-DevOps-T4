@@ -1,4 +1,4 @@
-name: remote_ssh_command_ventas
+name: VENTAS_EC2_DEV
 
 on:
   push:
