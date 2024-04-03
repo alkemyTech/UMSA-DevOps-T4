@@ -1,4 +1,4 @@
-name: Deploy to EC2 (DEV)
+name: COMPRAS-EC2 (DEV)
 
 on:
  push:
