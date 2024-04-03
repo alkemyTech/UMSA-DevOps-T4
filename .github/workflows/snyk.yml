@@ -1,4 +1,4 @@
-name: Snyk
+name: SNYK_VENTAS_DEV
 
 on:
    push:
