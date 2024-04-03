@@ -1,4 +1,4 @@
-name: SonarCloud Scan
+name: SONARCLOUD_VENTAS_DEV
 
 on:
   push:
