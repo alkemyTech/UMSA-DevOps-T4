@@ -1,0 +1,29 @@
+name: COBRANZAS-EC2
+
+on:
+  push:
+    branches:
+      - cobranzas
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST_COBRANZAS }}
+          username: ${{ secrets.USER_COBRANZAS }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_COBRANZAS }}
+          script: |
+            sudo yum update -y
+            sudo yum install -y nodejs npm git
+            sudo rm -rf /opt/Cobranzas
+            sudo mkdir -p /opt/Cobranzas
+            cd /opt/Cobranzas
+            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
+            sudo npm install express 
+            sudo npm install -g pm2
+            sudo pm2 start app.js
+            sudo pm2 status
