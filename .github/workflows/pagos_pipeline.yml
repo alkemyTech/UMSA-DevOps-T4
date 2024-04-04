@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - pagos
-      
 jobs:
   build:
     name: Build
@@ -22,7 +21,7 @@ jobs:
             sudo rm -rf /opt/pagos
             sudo mkdir -p /opt/pagos
             cd /opt/pagos
-            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/alkemyTech/UMSA-DevOps-T4 .
+            sudo git clone https://${{ secrets.GH_TOKEN_PAGOS }}@github.com/alkemyTech/UMSA-DevOps-T4 .
             sudo npm install express 
             sudo npm install -g pm2
             sudo pm2 start app.js
