@@ -1,4 +1,4 @@
-name: SNYK_VENTAS_DEV
+name: SNYK_PROVEEDORES_DEV
 
 on:
    push:
