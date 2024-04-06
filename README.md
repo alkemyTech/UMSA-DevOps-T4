@@ -12,3 +12,4 @@ Una vez generados los archivos de IaC, DockerFiles, Actions. Al finalizar el tra
 
 **Mucho cuidado, no subir cambios directo sobre los branches de los microservicios o sobre la rama main.**
 
+## probando ec2
