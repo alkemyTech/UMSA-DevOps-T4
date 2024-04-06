@@ -1,4 +1,4 @@
-name: COMPRAS-EC2
+name: COMPRAS_EC2_DEV
 
 on:
  push:
