@@ -1,4 +1,4 @@
-name: VENTAS_EC2_DEV
+name: VENTAS-EC2
 
 on:
   push:
