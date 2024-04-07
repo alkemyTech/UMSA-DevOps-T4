@@ -70,7 +70,7 @@ resource "aws_instance" "COMPRAS_dev_instance" {
 
 }
 
-# Mostrando IP publica de la instancia EC2 despues de su despliegue.
+# Mostrando la IP publica de la instancia EC2 despues de su despliegue.
 output "public_ip_dev" {
  value = aws_instance.COMPRAS_dev_instance.public_ip
 }
