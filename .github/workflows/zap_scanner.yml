@@ -29,5 +29,5 @@ jobs:
       - name: Upload ZAP Scan Report
         uses: actions/upload-artifact@v4
         with:
-          name: zap_scan_report
+          name: ${{ github.event.inputs.docker_image }}_zap_scan_report
           path: ${{ github.workspace }}/zap-report.html
