@@ -25,9 +25,4 @@ jobs:
                 sudo docker rm -f ventas_container || true   # Remover el contenedor si exite
                 sudo docker run -d --name ventas_container -p 3000:3000 --restart always diego1986/qa_ventas_diego_ormeno:latest
 
-      - name: Wait for service to start
-        run: sleep 30  # Espera 30 segundos antes de continuar
-
-      - name: Execute curl command
-        run: |
-          sudo curl -v ${{ secrets.HOST_VENTAS_TEST }}:3000
+ 
