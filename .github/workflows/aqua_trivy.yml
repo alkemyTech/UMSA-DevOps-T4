@@ -1,7 +1,10 @@
 name: Trivy Scanner
-
 on:
   workflow_dispatch:
+    inputs:
+      docker_image:
+        description: 'Ingrese la imagen [ ej: owner/repository_name:tag ]:'
+        required: true
 
 jobs:
   build:
@@ -18,7 +21,7 @@ jobs:
         id: trivy_scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'docker.io/diego1986/qa_ventas_diego_ormeno'
+          image-ref: ${{ github.event.inputs.docker_image }}
           format: 'sarif'
           output: 'trivy-results.sarif'
 
@@ -26,3 +29,4 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
+
