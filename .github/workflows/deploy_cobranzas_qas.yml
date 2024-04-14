@@ -1,0 +1,27 @@
+name: SSH EC2 | Run Image QA Enviroment
+
+on:
+  workflow_run:
+    workflows: ["Build & Push Docker Image | Cobranzas QA"]
+    types:
+      - completed
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST_COBRANZAS_QAS }}
+          username: ${{ secrets.USER_COBRANZAS }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_COBRANZAS_QAS }}
+          script: |
+                sudo yum update -y              # Actulizar 
+                sudo yum install docker -y      # Instalar Docker
+                sudo systemctl start docker     # Inicializar Docker
+                sudo systemctl enable docker
+                sudo docker rm -f cobranzas_qa_container || true   # Remover el contenedor si exite
+                sudo docker run -d --name cobranzas_qa_container -p 3000:3000 --restart always davidljm93/qa_cobranzas_dm:latest
+                sudo docker ps  # Chequear que el contenedor este corriendo
