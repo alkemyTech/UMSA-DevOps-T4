@@ -8,7 +8,7 @@ on:
     inputs:
       version:
         description: 'Ingrese la versión de la imagen'
-        required: true 
+        required: true  
 
 jobs:
   docker:
