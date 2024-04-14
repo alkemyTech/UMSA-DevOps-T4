@@ -6,7 +6,7 @@ const app = express();
 
 // Definir una ruta para el mensaje "Hola Mundo"
 app.get('/', (req, res) => {
-  res.send('¡Hola Mundo desde un microservicio en Node.js!');
+  res.send('¡Hola Mundo desde ventas QA');
 });
 
 // Iniciar el servidor en el puerto 3000
