@@ -1,2 +1,7 @@
 node_modules/
+.terraform/
 main.tf
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.lock.hcl
