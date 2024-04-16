@@ -1,4 +1,4 @@
-name: Build & Push Docker Image | Ventas QA
+name: Build & Push Docker Image | Auditoria QA
 
 on:
   workflow_dispatch:
@@ -17,13 +17,13 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USER_VENTAS_QA }}
-          password: ${{ secrets.DOCKER_PASS_VENTAS_QA }}
+          username: ${{ secrets.DOCKER_USER_VENTAS_QA }} # se reutilizaron para fines practicos
+          password: ${{ secrets.DOCKER_PASS_VENTAS_QA }} # se reutilizaron para fines practicos
           
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: |
-            diego1986/qa_ventas_diego_ormeno:latest
-            diego1986/qa_ventas_diego_ormeno:${{ github.event.inputs.version }}
+            diego1986/auditoria_qa:latest
+            diego1986/auditoria_qa:${{ github.event.inputs.version }}
