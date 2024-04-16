@@ -1,0 +1,26 @@
+name: SSH EC2 | Run Image QA Enviroment Auditoria
+
+on:
+  workflow_run:
+    workflows: ["Build & Push Docker Image | Auditoria QA"]
+    types:
+      - completed
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST_AUDITORIA_TEST }}
+          username: ${{ secrets.QA_VENTAS_USER }} # se reutilizo para fines practicos
+          key: ${{ secrets.SSH_AUDITORIA_TEST }}
+          script: |
+                sudo yum update -y              # Actulizar 
+                sudo yum install docker -y      # Instalar Docker
+                sudo systemctl start docker     # Inicializar Docker
+                sudo systemctl enable docker
+                sudo docker rm -f auditoria_container || true   # Remover el contenedor si exite
+                sudo docker run -d --name auditoria_container -p 3000:3000 --restart always diego1986/auditoria_qa:latest
