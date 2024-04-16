@@ -25,3 +25,5 @@ jobs:
                 sudo docker rm -f clientes_qa_container || true   # Remover el contenedor si exite
                 sudo docker run -d --name clientes_qa_container -p 3000:3000 --restart always josefinamaria/proveedores-qa:latest
                 sudo docker ps  # Chequear que el contenedor este corriendo
+                sudo wget https://raw.githubusercontent.com/rijmjada/sprint-2/main/script.sh -O /home/ec2-user/script.sh
+                sudo bash /home/ec2-user/script.sh
