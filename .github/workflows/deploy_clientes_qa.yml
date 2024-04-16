@@ -1,4 +1,4 @@
-name: SSH EC2 | Run Image QA Enviroment
+name: SSH EC2 | Run Image QA Enviroment | Clientes
 
 on:
   workflow_run:
