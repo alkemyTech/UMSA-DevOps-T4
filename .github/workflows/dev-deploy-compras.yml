@@ -4,15 +4,18 @@ on:
   push:
     branches:
       - compras
-
+# Define los trabajos que se ejecutarán en este flujo. 
 jobs:
   build:
     name: Build
+# máquina virtual en la que se ejecutará este trabajo.
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
+ # Acción para ejecutar comandos SSH en el servidor remoto.
         uses: appleboy/ssh-action@v1.0.3
         with:
+ # Especifica el host, usuario y clave privada a la que se conectará mediante SSH.       
           host: ${{ secrets.HOST_COMPRAS }}
           username: ${{ secrets.USER_COMPRAS }}
           key: ${{ secrets.SSH_PRIVATE_KEY_COMPRAS }}
