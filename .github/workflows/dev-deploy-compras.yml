@@ -1,4 +1,4 @@
-# Pipeline  para automatizar el proceso de despliegue de una aplicación Node.js en un servidor EC2 de AWS
+# Pipeline para automatizar el proceso de despliegue de una aplicación Node.js en un servidor EC2 de AWS
 name: COMPRAS-EC2
 
 on:
