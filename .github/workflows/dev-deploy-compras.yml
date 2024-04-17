@@ -19,6 +19,7 @@ jobs:
           host: ${{ secrets.HOST_COMPRAS }}
           username: ${{ secrets.USER_COMPRAS }}
           key: ${{ secrets.SSH_PRIVATE_KEY_COMPRAS }}
+ # Define el script que se ejecutará en el servidor remoto.
           script: |
             sudo yum update -y
             sudo yum install -y nodejs npm git
