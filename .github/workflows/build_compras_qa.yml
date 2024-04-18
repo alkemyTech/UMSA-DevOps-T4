@@ -1,5 +1,7 @@
-name: Build & Push Docker Image | Compras QA
+# Pipeline para construir y empujar una imagen Docker a Docker Hub.
 
+name: Build & Push Docker Image | Compras QA
+# Define el evento que activa este workflow. En este caso, se activa manualmente
 on:
   workflow_dispatch:
     inputs:
@@ -11,7 +13,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-        
+ # Configura la herramienta para construir la imagen
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
