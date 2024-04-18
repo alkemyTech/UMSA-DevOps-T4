@@ -1,11 +1,16 @@
 # Archivo Dockerfile para crear una imagen Docker que contiene la aplicación del microservicio en Node.js.
+
 # Imagen base que se utiliza para construir la imagen.
 FROM node:lts-alpine3.18
 
-WORKDIR /app        # Establecer el directorio
+# Establecer el directorio
+WORKDIR /app   
 
-COPY . .            # Copiar archivos en el directorio
+# Copiar archivos en el directorio
+COPY . . 
 
-RUN npm install     # Instalar dependencias
+# Instalar dependencias
+RUN npm install
 
-CMD ["npm", "start"] # Ejecutar la aplicación
+# Ejecutar la aplicación
+CMD ["npm", "start"] 
