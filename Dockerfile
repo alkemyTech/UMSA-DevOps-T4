@@ -2,10 +2,10 @@
 # Imagen base que se utiliza para construir la imagen.
 FROM node:lts-alpine3.18
 
-WORKDIR /app
+WORKDIR /app        # Establecer el directorio
 
-COPY . .
+COPY . .            # Copiar archivos en el directorio
 
-RUN npm install
+RUN npm install     # Instalar dependencias
 
-CMD ["npm", "start"]
+CMD ["npm", "start"] # Ejecutar la aplicación
